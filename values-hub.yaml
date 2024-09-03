@@ -13,4 +13,9 @@ clusterGroup:
 
   subscriptions: {}
 
-  applications: {}
+  applications:
+    httpd:
+      name: httpd
+      namespace: ingress
+      project: hub
+      path: charts/httpd

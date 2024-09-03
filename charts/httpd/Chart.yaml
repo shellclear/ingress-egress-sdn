@@ -1,0 +1,6 @@
+apiVersion: v2
+description: A Helm chart to deploy an Apache server with a index.html based on a configmap
+keywords:
+- pattern
+name: httpd
+version: 0.0.1

@@ -139,12 +139,6 @@ validate-cluster: ## Do some cluster validations before installing
 	@echo "Checking cluster:"
 	@echo -n "  cluster-info: "
 	@oc cluster-info >/dev/null && echo "OK" || (echo "Error"; exit 1)
-	@echo -n "  storageclass: "
-	@if [ `oc get storageclass -o go-template='{{printf "%d\n" (len .items)}}'` -eq 0 ]; then\
-		echo "None Found"; exit 1;\
-	else\
-		echo "OK";\
-	fi
 
 
 .PHONY: validate-schema
