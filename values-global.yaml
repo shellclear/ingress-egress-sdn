@@ -1,6 +1,6 @@
 ---
 global:
-  pattern: blank
+  pattern: ingress-egress-sdn
   secretStore:
     backend: none
 
