@@ -10,6 +10,6 @@ clusterGroup:
   applications:
     echo:
       name: echo
-      namespace: ingress
+      namespace: echo
       project: default
       path: charts/echo
