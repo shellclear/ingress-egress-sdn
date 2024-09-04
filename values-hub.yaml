@@ -6,6 +6,7 @@ clusterGroup:
 
   namespaces:
   - echo
+  - curl
 
   applications:
     echo:
@@ -13,3 +14,22 @@ clusterGroup:
       namespace: echo
       project: default
       path: charts/echo
+    curl:
+      name: curl
+      namespace: curl
+      project: default
+      path: charts/curl
+
+vars:
+  curl:
+    namespace: curl
+    url: http://echo-echo.apps.ocp4.gmbros.local/say/hello
+    sleep: 5
+    node: node03.ocp4.gmbros.local
+    egress:
+      mode: manual
+      sdn:
+        egressCIDRs:
+        - 10.0.0.0/24
+        egressIPs:
+        - 10.0.0.254

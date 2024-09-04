@@ -1,0 +1,5 @@
+---
+vars:
+  curl:
+    url: http://echo-echo.apps.ocp4.gmbros.local/say/Hola
+    sleep: 5

@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    application: curl
+  name: curl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deploymentconfig: curl
+  nodeSelector:
+    kubernetes.io/hostname: {{ .Values.vars.curl.node }}
+  template:
+    metadata:
+      labels:
+        app: curl
+        deploymentconfig: curl
+      name: curl
+    spec:
+      containers:
+      - name: apache
+        image: quay.io/soukron/nodejs-echo:v2
+        command:
+        - /bin/bash
+        args:
+        - "-c"
+        - "while true; do curl -ks {{ .Values.vars.curl.url }}; echo; sleep {{ .Values.vars.curl.sleep }}; done"
