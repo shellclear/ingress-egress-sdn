@@ -1,0 +1,10 @@
+apiVersion: v2
+description: A Helm chart to deploy an echo service using NodeJS
+sources:
+- https://github.com/soukron/nodejs-echo
+keywords:
+- nodejs
+- echo
+- pattern
+name: echo
+version: 0.0.1

@@ -4,18 +4,12 @@ clusterGroup:
   name: hub
   isHubCluster: true
 
-  projects:       
-  - hub  
-  
   namespaces:
-  - ingress
-  - egress
-
-  subscriptions: {}
+  - echo
 
   applications:
-    httpd:
-      name: httpd
+    echo:
+      name: echo
       namespace: ingress
-      project: hub
-      path: charts/httpd
+      project: default
+      path: charts/echo

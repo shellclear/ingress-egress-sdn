@@ -3,8 +3,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: httpd
-  name: httpd
+    app: echo
+  name: echo
 spec:
   ports:
   - name: 8080-tcp
@@ -12,7 +12,7 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: httpd
-    deploymentconfig: httpd
+    app: echo
+    deploymentconfig: echo
   sessionAffinity: None
   type: ClusterIP
