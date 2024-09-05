@@ -10,8 +10,6 @@ spec:
   selector:
     matchLabels:
       deploymentconfig: curl
-  nodeSelector:
-    kubernetes.io/hostname: {{ .Values.vars.curl.node }}
   template:
     metadata:
       labels:
@@ -27,3 +25,5 @@ spec:
         args:
         - "-c"
         - "while true; do curl -ks {{ .Values.vars.curl.url }}; echo; sleep {{ .Values.vars.curl.sleep }}; done"
+      nodeSelector:
+        kubernetes.io/hostname: {{ .Values.vars.curl.node }}
