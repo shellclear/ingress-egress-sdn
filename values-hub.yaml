@@ -15,11 +15,17 @@ clusterGroup:
       targetNamespaces: null
 
   subscriptions:
-  - name: egressip-ipam-operator
-    channel: alpha
-    source: community-operators
-    sourceNamespace: openshift-marketplace
-    csv: egressip-ipam-operator.v1.2.4
+    egress-ipam-operator:
+      name: egressip-ipam-operator
+      channel: alpha
+      source: community-operators
+      sourceNamespace: openshift-marketplace
+      csv: egressip-ipam-operator.v1.2.4
+
+  nodes:
+  - node03.ocp4.gmbros.local:
+      labels:
+        egressGateway: true
 
   applications:
     echo:
@@ -39,3 +45,13 @@ vars:
     url: http://echo-echo.apps.ocp4.gmbros.local/say/hello
     sleep: 5
     node: node03.ocp4.gmbros.local
+  egress-ipam-operator:
+    name: default-egressipam
+    spec:
+      cidrAssignments:
+      - labelValue: "true"
+        CIDR: 192.169.0.0/24
+      topologyLabel: egressGateway
+      nodeSelector:
+        matchLabels:
+          node-role.kubernetes.io/worker: ""
