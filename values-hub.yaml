@@ -4,23 +4,33 @@ clusterGroup:
   name: hub
   isHubCluster: true
 
+  scheduler:
+    mastersSchedulable: true
+
   namespaces:
   - echo
   - curl
+  - egressip-ipam-operator:
+      operatorGroup: true
+      targetNamespaces: null
 
-  projects:
-  - hub
+  subscriptions:
+  - name: egressip-ipam-operator
+    channel: alpha
+    source: community-operators
+    sourceNamespace: openshift-marketplace
+    csv: egressip-ipam-operator.v1.2.4
 
   applications:
     echo:
       name: echo
       namespace: echo
-      project: hub
+      project: default
       path: charts/echo
     curl:
       name: curl
       namespace: curl
-      project: hub
+      project: default
       path: charts/curl
 
 vars:
@@ -28,4 +38,4 @@ vars:
     namespace: curl
     url: http://echo-echo.apps.ocp4.gmbros.local/say/hello
     sleep: 5
-#    node: node03.ocp4.gmbros.local
+    node: node03.ocp4.gmbros.local
