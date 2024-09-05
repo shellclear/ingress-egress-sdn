@@ -9,12 +9,12 @@ clusterGroup:
 
   namespaces:
   - echo
-  - curl
+  - curl:
+      annotations:
+        egressip-ipam-operator.redhat-cop.io/egressipam: default-egressipam
   - egressip-ipam-operator:
       operatorGroup: true
       targetNamespaces: null
-      annotations:
-        egressip-ipam-operator.redhat-cop.io/egressipam: default-egressipam
 
   subscriptions:
     egressipam:
