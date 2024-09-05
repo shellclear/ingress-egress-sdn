@@ -30,7 +30,7 @@ vars:
     sleep: 5
     node: node03.ocp4.gmbros.local
     egress:
-      mode: manual
+      mode: automatic
       sdn:
         egressCIDRs:
         - 10.0.0.0/24
