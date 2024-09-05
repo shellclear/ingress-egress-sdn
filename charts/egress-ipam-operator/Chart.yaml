@@ -1,0 +1,8 @@
+apiVersion: v2
+description: A Helm chart to configure the egress ipam operator
+sources:
+- https://github.com/redhat-cop/egressip-ipam-operator
+keywords:
+- pattern
+name: egress-ipam-operator
+version: 0.0.1

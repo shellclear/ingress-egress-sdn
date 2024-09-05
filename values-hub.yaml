@@ -13,9 +13,11 @@ clusterGroup:
   - egressip-ipam-operator:
       operatorGroup: true
       targetNamespaces: null
+      annotations:
+        egressip-ipam-operator.redhat-cop.io/egressipam: default-egressipam
 
   subscriptions:
-    egress-ipam-operator:
+    egressipam:
       name: egressip-ipam-operator
       channel: alpha
       source: community-operators
@@ -38,6 +40,10 @@ clusterGroup:
       namespace: curl
       project: default
       path: charts/curl
+    egressipam:
+      name: egress-ipam-operator
+      project: default
+      path: charts/egress-ipam-operator
 
 vars:
   curl:
@@ -45,13 +51,7 @@ vars:
     url: http://echo-echo.apps.ocp4.gmbros.local/say/hello
     sleep: 5
     node: node03.ocp4.gmbros.local
-  egress-ipam-operator:
+  egressipam:
     name: default-egressipam
-    spec:
-      cidrAssignments:
-      - labelValue: "true"
-        CIDR: 192.169.0.0/24
-      topologyLabel: egressGateway
-      nodeSelector:
-        matchLabels:
-          node-role.kubernetes.io/worker: ""
+    cidr: 10.0.0.224/27
+    topologyLabel: egressGateway

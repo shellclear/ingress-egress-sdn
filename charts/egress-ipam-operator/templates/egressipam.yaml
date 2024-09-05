@@ -1,0 +1,13 @@
+---
+apiVersion: redhatcop.redhat.io/v1alpha1
+kind: EgressIPAM
+metadata:
+  name: {{ .Values.vars.egressipam.name }}
+spec:
+  cidrAssignments:
+  - labelValue: "true"
+    CIDR: {{ .Values.vars.egressipam.cidr }}
+  topologyLabel: {{ .Values.vars.egressipam.topologyLabel }}
+  nodeSelector:
+    matchLabels:
+      node-role.kubernetes.io/worker: ""
