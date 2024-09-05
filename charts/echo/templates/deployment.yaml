@@ -20,7 +20,7 @@ spec:
       name: echo
     spec:
       containers:
-      - name: apache
+      - name: server
         image: quay.io/soukron/nodejs-echo:v2
         ports:
         - containerPort: 8080

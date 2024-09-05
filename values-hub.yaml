@@ -8,16 +8,19 @@ clusterGroup:
   - echo
   - curl
 
+  projects:
+  - hub
+
   applications:
     echo:
       name: echo
       namespace: echo
-      project: default
+      project: hub
       path: charts/echo
     curl:
       name: curl
       namespace: curl
-      project: default
+      project: hub
       path: charts/curl
 
 vars:
