@@ -1,8 +1,0 @@
----
-apiVersion: network.openshift.io/v1
-kind: NetNamespace
-metadata:
-  name: {{ .Values.vars.curl.namespace }} 
-  annotations:
-    argocd.argoproj.io/sync-options: ServerSideApply=true
-egressIPs: {{ .Values.vars.curl.egress.sdn.egressIPs }}

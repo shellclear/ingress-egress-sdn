@@ -7,20 +7,18 @@ metadata:
   name: echo
 spec:
   replicas: 1
-  revisionHistoryLimit: 3
   selector:
     matchLabels:
       deploymentconfig: echo
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: echo
         deploymentconfig: echo
       name: echo
     spec:
       containers:
-      - name: server
+      - name: main
         image: quay.io/soukron/nodejs-echo:v2
         ports:
         - containerPort: 8080

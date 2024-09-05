@@ -18,12 +18,14 @@ spec:
       name: curl
     spec:
       containers:
-      - name: apache
+      - name: main
         image: quay.io/soukron/nodejs-echo:v2
         command:
         - /bin/bash
         args:
         - "-c"
         - "while true; do curl -ks {{ .Values.vars.curl.url }}; echo; sleep {{ .Values.vars.curl.sleep }}; done"
+{{- if .Values.vars.curl.node }}
       nodeSelector:
         kubernetes.io/hostname: {{ .Values.vars.curl.node }}
+{{- end }}

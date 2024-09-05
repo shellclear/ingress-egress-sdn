@@ -28,11 +28,4 @@ vars:
     namespace: curl
     url: http://echo-echo.apps.ocp4.gmbros.local/say/hello
     sleep: 5
-    node: node03.ocp4.gmbros.local
-    egress:
-      mode: automatic
-      sdn:
-        egressCIDRs:
-        - 10.0.0.0/24
-        egressIPs:
-        - 10.0.0.254
+#    node: node03.ocp4.gmbros.local
