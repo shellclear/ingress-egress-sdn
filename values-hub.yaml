@@ -12,6 +12,7 @@ clusterGroup:
   - curl:
       annotations:
         egressip-ipam-operator.redhat-cop.io/egressipam: default-egressipam
+        egressip-ipam-operator.redhat-cop.io/egressips: 10.0.0.225
   - egressip-ipam-operator:
       operatorGroup: true
       targetNamespaces: null
@@ -53,5 +54,5 @@ vars:
     node: node03.ocp4.gmbros.local
   egressipam:
     name: default-egressipam
-    cidr: 10.0.0.224/27
+    cidr: 10.0.0.0/24
     topologyLabel: egressGateway
