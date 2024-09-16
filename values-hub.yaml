@@ -51,6 +51,7 @@ vars:
     namespace: curl
     url: http://echo-echo.apps.ocp4.gmbros.local/say/hello
     sleep: 5
+    timeout: 5
     node: node03.ocp4.gmbros.local
   egressipam:
     name: default-egressipam

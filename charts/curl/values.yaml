@@ -1,6 +1,7 @@
 ---
 vars:
   curl:
-#    url: http://echo-echo.apps.ocp4.gmbros.local/say/Hola
-#    sleep: 5
-#    node: node03.ocp4.gmbros.local
+    url: http://echo-echo.apps.ocp4.gmbros.local/say/Hola
+    sleep: 5
+    node: node03.ocp4.gmbros.local
+    timeout: 10

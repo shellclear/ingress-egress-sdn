@@ -24,7 +24,7 @@ spec:
         - /bin/bash
         args:
         - "-c"
-        - "while true; do curl -ks {{ .Values.vars.curl.url }}; echo; sleep {{ .Values.vars.curl.sleep }}; done"
+        - "while true; do echo -n \"$( date ) - \"; curl -ks -m {{ .Values.vars.curl.timeout }} {{ .Values.vars.curl.url }}; echo; sleep {{ .Values.vars.curl.sleep }}; done"
 {{- if .Values.vars.curl.node }}
       nodeSelector:
         kubernetes.io/hostname: {{ .Values.vars.curl.node }}
