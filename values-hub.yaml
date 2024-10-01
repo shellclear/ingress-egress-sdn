@@ -29,6 +29,9 @@ clusterGroup:
   - node03.ocp4.gmbros.local:
       labels:
         egressGateway: true
+  - node04.ocp4.gmbros.local:
+      labels:
+        egressGateway: true
 
   applications:
     echo:
