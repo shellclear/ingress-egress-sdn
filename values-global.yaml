@@ -6,7 +6,7 @@ global:
 
   options:
     useCSV: true
-    syncPolicy: Automatic
+    syncPolicy: Manual
     installPlanApproval: Automatic
 
 main:
