@@ -31,7 +31,14 @@ spec:
       name: {{ coalesce .namespace $namespace }}
     spec:
       project: {{ .project }}
-      syncPolicy: {}
+      {{- if .syncPolicy }}
+      syncPolicy: {{ .syncPolicy | toPrettyJson }}
+      {{- else }}
+      syncPolicy:
+        automated: {}
+        retry:
+          limit: {{ default 20 $.Values.global.options.applicationRetryLimit }}
+      {{- end }}
       {{- if .ignoreDifferences }}
       ignoreDifferences: {{ .ignoreDifferences | toPrettyJson | nindent 2 }}
       {{- end }}
@@ -276,7 +283,14 @@ spec:
   {{- if .ignoreDifferences }}
   ignoreDifferences: {{ .ignoreDifferences | toPrettyJson }}
   {{- end }}
-  syncPolicy: {}
+  {{- if .syncPolicy }}
+  syncPolicy: {{ .syncPolicy | toPrettyJson }}
+  {{- else }}
+  syncPolicy:
+    automated: {}
+    retry:
+      limit: {{ default 20 $.Values.global.applicationRetryLimit }}
+  {{- end }}{{- /* .syncPolicy */}}
 {{- end }}{{- /* if or (.generators) (.generatorFile) (.useGeneratorValues) (.destinationServer) (.destinationNamespace) */}}
 {{- end }}{{- /* range .Values.clusterGroup.applications */}}
 {{- end }}{{- /* if not (eq .Values.enabled "core") */}}
