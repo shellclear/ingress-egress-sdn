@@ -39,7 +39,7 @@ clusterGroup:
       namespace: echo
       project: default
       path: charts/echo
-      syncPolicy: "\"{}\""
+      syncPolicy: {}
     curl:
       name: curl
       namespace: curl
