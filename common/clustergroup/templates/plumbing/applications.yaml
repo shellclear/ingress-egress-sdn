@@ -283,7 +283,7 @@ spec:
   {{- if .ignoreDifferences }}
   ignoreDifferences: {{ .ignoreDifferences | toPrettyJson }}
   {{- end }}
-  {{- if .syncPolicy | typeIs "map" }}
+  {{- if .syncPolicy (eq .syncPolicy (dict) }}
   syncPolicy: {{ .syncPolicy | toPrettyJson }}
   {{- else }}
   syncPolicy:
