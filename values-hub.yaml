@@ -39,7 +39,7 @@ clusterGroup:
       namespace: echo
       project: default
       path: charts/echo
-      syncPolicy: Manual
+      # syncPolicy: Manual
       # syncPolicy: 
       #   automated: 
       #     prune: false
