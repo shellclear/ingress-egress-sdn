@@ -283,8 +283,8 @@ spec:
   {{- if .ignoreDifferences }}
   ignoreDifferences: {{ .ignoreDifferences | toPrettyJson }}
   {{- end }}
-  {{- if .syncPolicy | toPrettyJson }}
-  syncPolicy: {{ .syncPolicy | toPrettyJson }}
+  {{- if and .syncPolicy (eq .syncPolicy "disabled") }}
+  syncPolicy: {}
   {{- else }}
   syncPolicy:
     automated: {}
