@@ -178,8 +178,6 @@ spec:
   {{- end }}
   {{- if and .syncPolicy (eq .syncPolicy "disabled") }}
   syncPolicy: {}
-  {{- else if and .syncPolicy (and (kindIs "map" .syncPolicy) (not (empty .syncPolicy)) (not (kindIs "string" .syncPolicy))) }}
-  syncPolicy: {{ .syncPolicy | toPrettyJson }}
   {{- else }}
   syncPolicy:
     automated: {}

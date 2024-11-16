@@ -40,6 +40,10 @@ clusterGroup:
       project: default
       path: charts/echo
       syncPolicy: disabled
+      # syncPolicy: 
+      #   automated: 
+      #     prune: true
+      #     allowEmpty: true
     # curl:
     #   name: curl
     #   namespace: curl
