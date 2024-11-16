@@ -44,6 +44,7 @@ clusterGroup:
         automated: 
           prune: true
           allowEmpty: true
+          selfHeal: true
     # curl:
     #   name: curl
     #   namespace: curl
