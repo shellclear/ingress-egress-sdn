@@ -18,12 +18,12 @@ clusterGroup:
       targetNamespaces: null
 
   subscriptions:
-    egressipam:
-      name: egressip-ipam-operator
-      channel: alpha
-      source: community-operators
-      sourceNamespace: openshift-marketplace
-      csv: egressip-ipam-operator.v1.2.4
+    # egressipam:
+    #   name: egressip-ipam-operator
+    #   channel: alpha
+    #   source: community-operators
+    #   sourceNamespace: openshift-marketplace
+    #   csv: egressip-ipam-operator.v1.2.4
 
   nodes:
   - node03.ocp4.gmbros.local:
@@ -39,7 +39,7 @@ clusterGroup:
       namespace: echo
       project: default
       path: charts/echo
-      syncPolicy: {}
+      syncPolicy: disabled
     # curl:
     #   name: curl
     #   namespace: curl
