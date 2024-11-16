@@ -39,12 +39,12 @@ clusterGroup:
       namespace: echo
       project: default
       path: charts/echo
-      # syncPolicy: Manual
-      syncPolicy: 
-        automated: 
-          prune: true
-          allowEmpty: true
-          selfHeal: true
+      syncPolicy: Manual
+      # syncPolicy: 
+      #   automated: 
+      #     prune: true
+      #     allowEmpty: true
+      #     selfHeal: true
     # curl:
     #   name: curl
     #   namespace: curl
