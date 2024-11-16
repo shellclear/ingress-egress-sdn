@@ -6,7 +6,7 @@ global:
   targetRevision: main
   options:
     useCSV: True
-    syncPolicy: Automatic
+    syncPolicy: "{}"
     installPlanApproval: Automatic
     applicationRetryLimit: 20
 
