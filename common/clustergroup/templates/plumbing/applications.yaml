@@ -184,6 +184,7 @@ spec:
   syncPolicy:
     automated: {}
     retry:
-      limit: {{ default 20 $.Values.global.applicationRetryLimit }}{{- /* .syncPolicy */}}
+      limit: {{ default 20 $.Values.global.applicationRetryLimit }}
+  {{- end }}{{- /* .syncPolicy */}}
 {{- end }}{{- /* if .disabled */}}
 {{- end }}{{- /* range .Values.clusterGroup.applications */}}
