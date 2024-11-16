@@ -1,3 +1,4 @@
+{{- if not (eq .Values.enabled "plumbing") }}
 {{- /*
   We first check if namespaces are defined as a map.  If it is we call
   our helper function in _helpers.tpl to process the namespaces
@@ -36,5 +37,6 @@ metadata:
   {{- end }} {{- /* if kindIs "string" $ns */}}
 spec:
 ---
+{{- end }}
 {{- end }}
 {{- end }}

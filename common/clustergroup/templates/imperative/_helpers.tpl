@@ -99,7 +99,7 @@
   name: trusted-ca-bundle
 - mountPath: /var/run/trusted-hub
   name: trusted-hub-bundle
-- mountPath: /etc/pki/tls/certs
+- mountPath: /tmp/ca-bundles
   name: ca-bundles
 {{- end }}
 

@@ -1,3 +1,4 @@
+{{- if not (eq .Values.enabled "plumbing") }}
 {{/* Define this if needed (jobs defined */}}
 {{- if (and $.Values.clusterGroup.imperative (gt (len $.Values.clusterGroup.imperative.jobs) 0)) -}}
 ---
@@ -61,4 +62,5 @@ spec:
           volumes:
           {{- include "imperative.volumes_ca" . | indent 12 }}
           restartPolicy: Never
+{{- end }}
 {{- end }}

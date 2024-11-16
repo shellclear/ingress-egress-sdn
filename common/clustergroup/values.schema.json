@@ -6,6 +6,14 @@
       "type": "object",
       "additionalProperties": true,
       "properties": {
+        "enabled": {
+          "type": "string",
+          "enum": [
+            "all",
+            "core",
+            "plumbing"
+          ]
+        },
         "secretStore": {
           "$ref": "#/definitions/SecretStore"
         },
@@ -47,7 +55,7 @@
     },
     "Main": {
       "type": "object",
-      "additionalProperties": true,
+      "additionalProperties": false,
       "required": [
         "clusterGroupName"
       ],
@@ -56,10 +64,6 @@
       "properties": {
         "clusterGroupName": {
           "type": "string"
-        },
-        "multiSourceRepoUrl": {
-          "type": "string",
-          "description": "The URL repo for to be used by default when no repoURL is specified in a multisource application. Defaults to https://charts.validatedpatterns.io/"
         },
         "extraParameters": {
           "type": "array",
@@ -72,6 +76,10 @@
         "git": {
           "type": "object",
           "additionalProperties": false,
+          "required": [
+            "repoURL",
+            "revision"
+          ],
           "properties": {
             "repoUpstreamURL": {
               "type": "string",
@@ -224,6 +232,11 @@
           "description": "This is used by the pipelines as the branch for the development repository. e.g. v2.0. This is marked as deprecated"
         }
       },
+      "required": [
+        "hostname",
+        "account",
+        "email"
+      ],
       "title": "GlobalGit"
     },
     "Options": {
@@ -338,6 +351,12 @@
             "type": "string"
           }
         },
+        "hostedSite": {
+          "type": "object",
+          "items": {
+            "$ref": "#/definitions/HostedSite"
+          }
+        },
         "subscriptions": {
           "anyOf": [
             {
@@ -389,10 +408,6 @@
         "imperative": {
           "$ref": "#/definitions/Imperative"
         },
-        "extraObjects": {
-          "type": "object",
-          "description": "Extra objects to add at the clustergroup level. Expected to be ArgoCD Resource Hooks." 
-        },
         "managedClusterGroups": {
           "anyOf": [
             {
@@ -430,15 +445,21 @@
       "additionalProperties": true,
       "properties": {
         "name": {
-	        "type": "string",
-	        "description": "Name of the namespace."
+	  "type": "string",
+	  "description": "Name of the namespace."
         },
-	      "labels": {
-	        "type": "object"
-	      },
-	      "annotations": {
-          "type": "object"
-	      }
+	"labels": {
+	  "type": "array",
+	  "items": {
+            "$ref": "#/definitions/NameValue"
+	  }
+	},
+	"annotations": {
+          "type": "array",
+	  "items": {
+	    "$ref": "#/definitions/NameValue"
+	  }
+	}
       }
     },
     "Nodes": {
@@ -451,11 +472,17 @@
           "description": "Name of the node."
         },
         "labels": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NameValue"
+          }
         },
-	      "annotations": {
-          "type": "object"
-	      }
+	"annotations": {
+          "type": "array",
+	  "items": {
+	    "$ref": "#/definitions/NameValue"
+	  }
+	}
       }
     },
     "NameValue": {
@@ -560,10 +587,6 @@
         "path": {
           "type": "string",
           "description": "Path is a directory path within the Git repository, and is only valid for applications sourced from Git."
-        },
-        "annotations": {
-          "type": "object",
-          "description": "Annotations to add to the created Application object"
         }
       },
       "required": [
@@ -670,6 +693,20 @@
           "description": "Location of the index image."
         }
       }
+    },
+    "HostedSite": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "secretsPath": {
+          "type": "string",
+          "description": "It represents the path in the vault that is supposed to contain two fields: 'bearerToken' representing the token to use to authenticate to the remote cluster and 'caCert' which is the base64-encoded Certificate Authority cert of the remote cluster."
+        }
+      },
+      "required": [
+        "secretsPath"
+      ],
+      "title": "HostedSite"
     },
     "Imperative": {
       "type": "object",
@@ -813,6 +850,12 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/ACMLabels"
+          }
+        },
+        "hostedArgoSites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HostedArgoSites"
           }
         },
         "clusterPools": {
@@ -989,20 +1032,12 @@
             "Automatic"
           ]
         },
-        "annotations": {
-          "type": "object"
-        },
         "config": {
           "type": "object",
           "$ref": "#/definitions/SubscriptionsConfigEnv"
         },
         "disabled": {
           "type": "boolean"
-        },
-        "sequenceJob": {
-          "type": "object",
-          "description": "Will create an ArgoCD Resource Hook to help sequence subscription installs if needed",
-          "$ref": "#/definitions/SequenceJob"
         }
       },
       "required": [
@@ -1027,37 +1062,28 @@
       ],
       "title": "SubscriptionsConfigEnv"
     },
-    "SequenceJob": {
+    "HostedArgoSites": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "syncWave": {
+        "name": {
           "type": "string"
         },
-        "resourceType": {
+        "domain": {
           "type": "string"
         },
-        "resourceName": {
+        "bearerKeyPath": {
           "type": "string"
         },
-        "resourceNamespace": {
+        "caKeyPath": {
           "type": "string"
-        },
-        "hookType": {
-          "type": "string"
-        },
-        "image": {
-          "type": "string"
-        },
-        "command": {
-          "type": "array"
-        },
-        "disabled": {
-          "type": "boolean"
         }
       },
-      "required": [],
-      "title": "SequenceJob"
+      "required": [
+        "name",
+        "domain"
+      ],
+      "title": "HostedArgoSites"
     }
   }
 }

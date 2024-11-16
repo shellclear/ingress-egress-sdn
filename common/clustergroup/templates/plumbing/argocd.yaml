@@ -1,3 +1,5 @@
+
+{{- if (eq .Values.enabled "all") }}
 {{- $namespace := print $.Values.global.pattern "-" $.Values.clusterGroup.name }}
 apiVersion: argoproj.io/v1beta1
 kind: ArgoCD
@@ -66,12 +68,7 @@ spec:
           memory: 128Mi
   initialSSHKnownHosts: {}
   rbac:
-    defaultPolicy: role:readonly
-    policy: |-
-      g, system:cluster-admins, role:admin
-      g, cluster-admins, role:admin
-      g, admin, role:admin
-    scopes: '[groups, email]'
+    defaultPolicy: role:admin
   repo:
     initContainers:
     - command:
@@ -153,6 +150,13 @@ spec:
         name: {{ $cmp.name }}
 {{- end }}
 {{- end }}
+    resources:
+      limits:
+        cpu: "1"
+        memory: 512Mi
+      requests:
+        cpu: 250m
+        memory: 256Mi
 {{- if $.Values.clusterGroup.argoCD.resourceExclusions }}
   resourceExclusions: {{- $.Values.clusterGroup.argoCD.resourceExclusions | toYaml | indent 2 }}
 {{- end }}
@@ -200,3 +204,4 @@ spec:
   href: 'https://{{ .Values.clusterGroup.name }}-gitops-server-{{ $namespace }}.{{ coalesce .Values.global.localClusterDomain .Values.global.hubClusterDomain }}'
   location: ApplicationMenu
   text: '{{ title .Values.clusterGroup.name }} ArgoCD'
+{{- end }}
