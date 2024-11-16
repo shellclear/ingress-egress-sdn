@@ -6,8 +6,8 @@ global:
 
   options:
     useCSV: true
-    syncPolicy: Automatic
-    installPlanApproval: Automatic
+    syncPolicy: Manual
+    installPlanApproval: Manual
 
 main:
   clusterGroupName: hub
