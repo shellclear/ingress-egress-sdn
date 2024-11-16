@@ -39,18 +39,18 @@ clusterGroup:
       namespace: echo
       project: default
       path: charts/echo
-      syncPolicy: {}
-    curl:
-      name: curl
-      namespace: curl
-      project: default
-      path: charts/curl
-      syncPolicy: {}
-    egressipam:
-      name: egress-ipam-operator
-      project: default
-      path: charts/egress-ipam-operator
-      syncPolicy: {}
+      syncPolicy: "{}"
+    # curl:
+    #   name: curl
+    #   namespace: curl
+    #   project: default
+    #   path: charts/curl
+    #   syncPolicy: {}
+    # egressipam:
+    #   name: egress-ipam-operator
+    #   project: default
+    #   path: charts/egress-ipam-operator
+    #   syncPolicy: {}
 
 vars:
   curl:
